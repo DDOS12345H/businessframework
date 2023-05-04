@@ -2,7 +2,7 @@ package com.zdc.business.business.util;
 
 import org.springframework.lang.Nullable;
 
-public class AssertUtils {
+public class AssertUtil {
     /**
      * 如果不为空时，抛出异常
      * @param object

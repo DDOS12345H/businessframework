@@ -1,19 +1,26 @@
 package com.zdc.business.business.test;
 
-import com.zdc.business.business.context.CommonBContext;
-import com.zdc.business.business.domain.BReqContext;
-import com.zdc.business.business.domain.BRespContext;
+import com.zdc.business.business.context.AdapterBContext;
+import com.zdc.business.business.context.StrategyBContext;
+import com.zdc.business.business.test.domain.BReqContext;
+import com.zdc.business.business.test.domain.BRespContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class StartApp {
-    public static void main(String[] args) {
-        AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext("com.zdc.business.business");
-        Object myBusinessHandle = context.getBean("myBusinessHandle");
-        System.out.println(myBusinessHandle);
-        CommonBContext commonBContext = (CommonBContext) context.getBean("commonBContext");
+        public static void main(String[] args) {
+            AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext("com.zdc.business.business");
+            Object myBusinessHandle = context.getBean("myBusinessHandle");
+            System.out.println(myBusinessHandle);
+            StrategyBContext strategyBContext = (StrategyBContext) context.getBean("strategyBContext");
 
-        BRespContext invoke = commonBContext.invoke("ZDC", "T", new BReqContext(), BRespContext.class);
-        System.out.println(invoke);
-    }
+            BRespContext invoke = strategyBContext.invoke("ZDC", "T", new BReqContext(), BRespContext.class);
+            System.out.println(invoke);
+        }
+        //测试适配器模式
+/*    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext("com.zdc.business.business");
+        AdapterBContext adapterBContext = (AdapterBContext) context.getBean("adapterBContext");
+        adapterBContext.execute("ZDC",new BReqContext());
+
+    }*/
 }

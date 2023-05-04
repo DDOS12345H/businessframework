@@ -1,8 +1,14 @@
 package com.zdc.business.business.factory;
 
+import java.util.Map;
+
 public class CommonBFactory extends AbstractBFactory {
-    @Override
-    public Object get(Object key) {
-        return super.get(key);
+
+
+    public CommonBFactory(Map factory) {
+        super(factory);
+    }
+    public CommonBFactory() {
+        super();
     }
 }
