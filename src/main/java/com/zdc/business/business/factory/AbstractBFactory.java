@@ -23,8 +23,8 @@ public abstract class AbstractBFactory<T> {
      * @param key
      * @return
      */
-    public T get(Object key) {
-        return factory.get(key);
+    public <T>T get(Object key) {
+        return (T)factory.get(key);
     }
     /**
      * 获取处理器集

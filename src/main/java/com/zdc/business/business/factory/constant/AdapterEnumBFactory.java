@@ -1,17 +1,17 @@
 package com.zdc.business.business.factory.constant;
 
 public  enum AdapterEnumBFactory {
-    ADAPTER_DEFAULT_TYPE_NAME("default","默认适配器名称");
+    ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME("default","全局异常适配器类型"),
     ;
-    private final String type;
+    private final String code;
     private final String description;
-    AdapterEnumBFactory(String type,String description) {
-        this.type=type;
+    AdapterEnumBFactory(String code,String description) {
+        this.code=code;
         this.description=description;
     }
 
-    public String getType() {
-        return type;
+    public String getCode() {
+        return code;
     }
 
     public String getDescription() {

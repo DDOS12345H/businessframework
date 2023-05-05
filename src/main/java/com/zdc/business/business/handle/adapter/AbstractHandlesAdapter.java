@@ -4,7 +4,7 @@ import com.zdc.business.business.context.AdapterBContext;
 import com.zdc.business.business.util.SpringUtil;
 import org.springframework.beans.factory.InitializingBean;
 
-public abstract class AbstractHandleAdapter<T,R> implements InitializingBean {
+public abstract class AbstractHandlesAdapter<T,R> implements InitializingBean {
     /**
      * 是否支持
      * @return
@@ -16,6 +16,20 @@ public abstract class AbstractHandleAdapter<T,R> implements InitializingBean {
      * @return
      */
     public abstract R execute(T context);
+
+    /**
+     * 执行完后，是否中断
+     * @throws Exception
+     */
+    public boolean isInterrupt(){
+        return false;
+    }
+
+    /**
+     * 适配器类型
+     * @throws Exception
+     */
+    public abstract String getType();
 
     @Override
     public void afterPropertiesSet() throws Exception {

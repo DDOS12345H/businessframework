@@ -8,12 +8,12 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @BComponent
-public @interface AdapterBComponent {
+public @interface ChainsBComponent {
 
 
     /**
      * 优先级
      * @return
      */
-    int priorityOrder () default 100;
+    int priorityOrder() default 100;
 }

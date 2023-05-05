@@ -37,9 +37,9 @@ public class StrategyBContext extends AbstractBContext<AbstractBHandle> {
      */
     public AbstractBHandle getHandle(String type, String key){
         AbstractBFactory handleFactory = super.getHandleFactory(type);
-        AssertUtil.notNull(handleFactory,"查询不到处理器工厂");
+        AssertUtil.notNull(handleFactory,"查询不到类型为“{}”的策略工厂",type);
         Object handle = handleFactory.get(key);
-        AssertUtil.notNull(handleFactory,"查询不到处理器");
+        AssertUtil.notNull(handleFactory,"查询不到类型为“{}”策略处理器",type);
 
         return (AbstractBHandle)handle;
     }

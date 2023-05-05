@@ -2,6 +2,7 @@ package com.zdc.business.business.handle.strategy;
 
 import com.zdc.business.business.context.AdapterBContext;
 import com.zdc.business.business.context.StrategyBContext;
+import com.zdc.business.business.factory.constant.AdapterEnumBFactory;
 import com.zdc.business.business.wrapper.BExceptionWrapper;
 import com.zdc.business.business.wrapper.CommonBName;
 import com.zdc.business.business.util.SpringUtil;
@@ -47,7 +48,11 @@ public abstract class AbstractBHandle<T, R> implements InitializingBean {
     public void invokeGlobalExceptionHandle(BExceptionWrapper contenxt){
         //获取所有异常处理适配器
         AdapterBContext adapterBContext = (AdapterBContext) SpringUtil.getBean("adapterBContext");
-        adapterBContext.execute("ZDC",contenxt);
+        try {
+            adapterBContext.execute(AdapterEnumBFactory.ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME.getCode(),contenxt);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
