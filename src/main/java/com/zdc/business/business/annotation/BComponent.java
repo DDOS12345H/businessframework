@@ -1,4 +1,6 @@
-package com.zdc.business.business.stereotype;
+package com.zdc.business.business.annotation;
+
+import org.springframework.stereotype.Component;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,8 +9,8 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@BComponent
-public @interface AdapterBComponent {
+@Component
+public @interface BComponent {
 
 
     /**

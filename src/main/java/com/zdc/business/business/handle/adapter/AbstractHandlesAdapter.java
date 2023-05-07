@@ -1,10 +1,12 @@
 package com.zdc.business.business.handle.adapter;
 
 import com.zdc.business.business.context.AdapterBContext;
+import com.zdc.business.business.factory.IAdapterEnumBFactory;
+import com.zdc.business.business.handle.HandleBRegister;
 import com.zdc.business.business.util.SpringUtil;
 import org.springframework.beans.factory.InitializingBean;
 
-public abstract class AbstractHandlesAdapter<T,R> implements InitializingBean {
+public abstract class AbstractHandlesAdapter<T,R> extends HandleBRegister {
     /**
      * 是否支持
      * @return
@@ -29,7 +31,7 @@ public abstract class AbstractHandlesAdapter<T,R> implements InitializingBean {
      * 适配器类型
      * @throws Exception
      */
-    public abstract String getType();
+    public abstract IAdapterEnumBFactory getType();
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -29,7 +29,6 @@ public abstract class AbstractBContext<T> {
     }
 
 
-
     public AbstractBContext(Map<String, AbstractBFactory> factoryMap) {
         this.factoryMap = factoryMap;
     }

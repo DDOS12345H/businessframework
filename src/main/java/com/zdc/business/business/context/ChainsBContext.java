@@ -2,10 +2,10 @@ package com.zdc.business.business.context;
 
 import com.zdc.business.business.factory.AbstractBFactory;
 import com.zdc.business.business.factory.ChainsBFactory;
-import com.zdc.business.business.handle.adapter.AbstractHandlesAdapter;
+import com.zdc.business.business.factory.IChainsEnumBFactory;
 import com.zdc.business.business.handle.chains.AbstractChainHandle;
-import com.zdc.business.business.stereotype.AdapterBComponent;
 import com.zdc.business.business.util.AssertUtil;
+import com.zdc.business.business.util.ExceptionUtil;
 import com.zdc.business.business.util.StringUtil;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +17,11 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
 
     @Override
     public void register(AbstractChainHandle handle) {
-        Class<? extends AbstractChainHandle> aClass = handle.getClass();
-        AdapterBComponent annotation = aClass.getAnnotation(AdapterBComponent.class);
-        //获取处理器属性名称
-        String adapterType = handle.getType();
-        Integer priorityOrder = annotation.priorityOrder();
-        AssertUtil.notNull(adapterType,"适配器类型名称不能为空");
+        //获取处理器属性名称、优先级等配置
+        IChainsEnumBFactory type = handle.getType();
+        AssertUtil.notNull(type,"适配器配置信息不能为空");
+        Integer priorityOrder = type.getPriorityOrder();
+        String adapterType = type.getType();
         AbstractBFactory abstractBFactory = factoryMap.get(adapterType);
         if (Objects.isNull(abstractBFactory)){
             abstractBFactory=new ChainsBFactory(new TreeMap<Integer, AbstractChainHandle>(new Comparator<Integer>() {
@@ -44,7 +43,7 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
         if (StringUtil.isEmpty(handleName)){
             return (R)handleFactory.getHeadHandle().execute(context);
         }
-        return (R)handleFactory.get(handleName).execute(context);
+        return (R)getHandleOfChains(handleFactory,handleName).execute(context);
     }
 
     /**
@@ -102,6 +101,21 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
 
     }
 
-
+    /**
+     * 查找链表中的处理器
+     * @param factoryMap
+     */
+    public AbstractChainHandle getHandleOfChains(ChainsBFactory<AbstractChainHandle> factoryMap,String handleName){
+        AbstractChainHandle headHandle = factoryMap.getHeadHandle();
+        AbstractChainHandle currentHandle=headHandle;
+        while (currentHandle!=null){
+            if (handleName.equals(currentHandle.getType().getName())){
+                return currentHandle;
+            }
+            currentHandle=currentHandle.getNextNode();
+        }
+        ExceptionUtil.newRuntime("查询不到名称为{}的处理器","{}",handleName);
+        return null;
+    }
 
 }

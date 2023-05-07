@@ -15,7 +15,7 @@ public class InitChainListener implements ApplicationListener<ContextRefreshedEv
         //Spring IOC容器刷新完成后，发布该事件
         //此时所有的Bean 已经完成实例化跟初始化操作
         ApplicationContext applicationContext = event.getApplicationContext();
-        ChainsBContext chainsBContext = (ChainsBContext) applicationContext.getBean("ChainsBContext");
+        ChainsBContext chainsBContext = (ChainsBContext) applicationContext.getBean("chainsBContext");
         chainsBContext.initChains();
     }
 }

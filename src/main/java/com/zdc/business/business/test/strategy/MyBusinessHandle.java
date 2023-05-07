@@ -1,13 +1,12 @@
-package com.zdc.business.business.test;
+package com.zdc.business.business.test.strategy;
 
+import com.zdc.business.business.annotation.BComponent;
 import com.zdc.business.business.wrapper.CommonBName;
 import com.zdc.business.business.test.domain.BReqContext;
 import com.zdc.business.business.test.domain.BRespContext;
 import com.zdc.business.business.handle.strategy.AbstractBHandle;
-import com.zdc.business.business.stereotype.BComponent;
 
 import java.util.Arrays;
-
 @BComponent
 public class MyBusinessHandle extends AbstractBHandle<BReqContext, BRespContext> {
 

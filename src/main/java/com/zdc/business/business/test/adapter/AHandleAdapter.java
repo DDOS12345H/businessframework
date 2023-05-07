@@ -1,10 +1,10 @@
 package com.zdc.business.business.test.adapter;
 
-import com.zdc.business.business.factory.constant.AdapterEnumBFactory;
+import com.zdc.business.business.factory.IAdapterEnumBFactory;
 import com.zdc.business.business.handle.adapter.AbstractHandlesAdapter;
-import com.zdc.business.business.stereotype.AdapterBComponent;
+import com.zdc.business.business.annotation.BComponent;
 
-@AdapterBComponent
+@BComponent
 public class AHandleAdapter extends AbstractHandlesAdapter {
     @Override
     public boolean isSupport(Object context) {
@@ -20,7 +20,7 @@ public class AHandleAdapter extends AbstractHandlesAdapter {
     }
 
     @Override
-    public String getType() {
-        return AdapterEnumBFactory.ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME.getCode();
+    public IAdapterEnumBFactory getType() {
+        return AdapterEnumBFactory.ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME;
     }
 }

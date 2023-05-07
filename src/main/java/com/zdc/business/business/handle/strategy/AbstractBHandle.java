@@ -2,17 +2,18 @@ package com.zdc.business.business.handle.strategy;
 
 import com.zdc.business.business.context.AdapterBContext;
 import com.zdc.business.business.context.StrategyBContext;
-import com.zdc.business.business.factory.constant.AdapterEnumBFactory;
+import com.zdc.business.business.handle.HandleBRegister;
+import com.zdc.business.business.test.adapter.AdapterEnumBFactory;
 import com.zdc.business.business.wrapper.BExceptionWrapper;
 import com.zdc.business.business.wrapper.CommonBName;
 import com.zdc.business.business.util.SpringUtil;
 import org.springframework.beans.factory.InitializingBean;
 
-public abstract class AbstractBHandle<T, R> implements InitializingBean {
+public abstract class AbstractBHandle<T, R> extends HandleBRegister {
     //异常时，抛出
     private boolean isThrow=true;
 
-    public <R>R invoke(T t) {
+    public R invoke(T t) {
         //前置处理
         if (!before(t)) {
             return null;
@@ -49,7 +50,7 @@ public abstract class AbstractBHandle<T, R> implements InitializingBean {
         //获取所有异常处理适配器
         AdapterBContext adapterBContext = (AdapterBContext) SpringUtil.getBean("adapterBContext");
         try {
-            adapterBContext.execute(AdapterEnumBFactory.ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME.getCode(),contenxt);
+            adapterBContext.execute(AdapterEnumBFactory.ADAPTER_GLOBAL_EXCEPTION_TYPE_NAME.getType(),contenxt);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -77,7 +78,7 @@ public abstract class AbstractBHandle<T, R> implements InitializingBean {
      * @param t
      * @return
      */
-    public abstract <R>R doExecute(T t);
+    public abstract R doExecute(T t);
 
     /**
      * 处理器类型、别名

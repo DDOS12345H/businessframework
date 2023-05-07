@@ -2,8 +2,8 @@ package com.zdc.business.business.context;
 
 import com.zdc.business.business.factory.AbstractBFactory;
 import com.zdc.business.business.factory.CommonBFactory;
+import com.zdc.business.business.factory.IAdapterEnumBFactory;
 import com.zdc.business.business.handle.adapter.AbstractHandlesAdapter;
-import com.zdc.business.business.stereotype.AdapterBComponent;
 import com.zdc.business.business.util.AssertUtil;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ public class AdapterBContext extends AbstractBContext<AbstractHandlesAdapter> {
 
     @Override
     public void register(AbstractHandlesAdapter handle) {
-        Class<? extends AbstractHandlesAdapter> aClass = handle.getClass();
-        AdapterBComponent annotation = aClass.getAnnotation(AdapterBComponent.class);
+
         //获取处理器属性名称
-        String adapterType = handle.getType();
-        Integer priorityOrder = annotation.priorityOrder();
+        IAdapterEnumBFactory type = handle.getType();
+        Integer priorityOrder = type.getPriorityOrder();
+        String adapterType = type.getType();
         AssertUtil.notNull(adapterType,"适配器类型名称不能为空");
         AbstractBFactory abstractBFactory = factoryMap.get(adapterType);
         if (Objects.isNull(abstractBFactory)){

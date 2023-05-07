@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class StartApp {
         public static void main(String[] args) {
             AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext("com.zdc.business.business");
+
 /*            StrategyBContext strategyBContext = (StrategyBContext) context.getBean("strategyBContext");
 
             BRespContext invoke = strategyBContext.invoke("ZDC", "T", new BReqContext(), BRespContext.class);
