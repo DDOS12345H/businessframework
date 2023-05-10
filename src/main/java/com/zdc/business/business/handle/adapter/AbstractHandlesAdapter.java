@@ -24,7 +24,7 @@ public abstract class AbstractHandlesAdapter<T,R> extends HandleBRegister {
      * @throws Exception
      */
     public boolean isInterrupt(){
-        return false;
+        return true;
     }
 
     /**

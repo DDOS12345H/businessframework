@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
-@Component
 public class StrategyBContext extends AbstractBContext<AbstractBHandle> {
 
     @Override

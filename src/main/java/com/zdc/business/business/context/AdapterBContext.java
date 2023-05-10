@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-@Component
 public class AdapterBContext extends AbstractBContext<AbstractHandlesAdapter> {
 
 
@@ -18,9 +17,9 @@ public class AdapterBContext extends AbstractBContext<AbstractHandlesAdapter> {
 
         //获取处理器属性名称
         IAdapterEnumBFactory type = handle.getType();
+        AssertUtil.notNull(type,"适配器类型名称不能为空");
         Integer priorityOrder = type.getPriorityOrder();
         String adapterType = type.getType();
-        AssertUtil.notNull(adapterType,"适配器类型名称不能为空");
         AbstractBFactory abstractBFactory = factoryMap.get(adapterType);
         if (Objects.isNull(abstractBFactory)){
             abstractBFactory=new CommonBFactory(new TreeMap<Integer, AbstractHandlesAdapter>(new Comparator<Integer>() {
@@ -39,18 +38,17 @@ public class AdapterBContext extends AbstractBContext<AbstractHandlesAdapter> {
     public <R> R invoke(String handleType, String handleName, Object context, Class<R> resp) {
         List<AbstractHandlesAdapter> handles = this.getHandles(handleType);
         //记录被处理次数
-        Integer result=0;
+        Object result=null;
         for (AbstractHandlesAdapter handle : handles) {
             if (handle.isSupport(context)){
-                 handle.execute(context);
-                 result++;
+                result=handle.execute(context);
                  if (handle.isInterrupt()){
                      break;
                  }
             }
 
         }
-        return (R)result;
+        return result!=null?(R)result:null;
     }
 
     /**
@@ -59,9 +57,9 @@ public class AdapterBContext extends AbstractBContext<AbstractHandlesAdapter> {
      * @param context
      * @return
      */
-    public int execute(String handleType,  Object context) {
+    public <R>R execute(String handleType,  Object context, Class<R> resp) {
         AssertUtil.notNull(handleType,"处理器类型参数不能为空");
-       return this.invoke(handleType,null,context,Integer.class);
+       return this.invoke(handleType,null,context,resp);
     }
     /**
      * 获取处理器集

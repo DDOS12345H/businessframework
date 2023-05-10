@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.zdc.business</groupId>
 	<artifactId>business</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>business</name>
-	<description>Demo project for Spring Boot</description>
+	<description>业务框架</description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
@@ -25,28 +25,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
+					<source>1.8</source> <!--指明源码用的Jdk版本-->
+					<target>1.8</target> <!--指明打包后的Jdk版本-->
 					<excludes>
 						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
+							com/zdc/business/business/BusinessApplication.java <!--你的启动类相对路径-->
 						</exclude>
 					</excludes>
 				</configuration>
