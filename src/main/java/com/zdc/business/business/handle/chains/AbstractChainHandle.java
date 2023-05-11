@@ -15,7 +15,7 @@ public abstract class AbstractChainHandle<T,R> extends HandleBRegister {
      * 调用下个节点
      * @return
      */
-    public  R nextNode(T context){
+    public  R executeNextNode(T context){
         if (nextNode==null){
             return null;
         }

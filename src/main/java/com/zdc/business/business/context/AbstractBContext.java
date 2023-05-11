@@ -19,7 +19,7 @@ public abstract class AbstractBContext<T> {
      * 执行
      */
 
-    public abstract  <R>R invoke(String handleType, String handleName,  Object context,Class<R> resp);
+    protected abstract  <R>R invoke(String handleType, String handleName,  Object context,Class<R> resp);
 
     /**
      * 获取处理器工厂

@@ -7,7 +7,6 @@ import com.zdc.business.business.handle.chains.AbstractChainHandle;
 import com.zdc.business.business.util.AssertUtil;
 import com.zdc.business.business.util.ExceptionUtil;
 import com.zdc.business.business.util.StringUtil;
-import org.springframework.stereotype.Component;
 
 import java.util.*;
 
@@ -21,22 +20,18 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
         AssertUtil.notNull(type,"适配器配置信息不能为空");
         Integer priorityOrder = type.getPriorityOrder();
         String adapterType = type.getType();
+        handle.setHandleName(type.getName());
         AbstractBFactory abstractBFactory = factoryMap.get(adapterType);
         if (Objects.isNull(abstractBFactory)){
-            abstractBFactory=new ChainsBFactory(new TreeMap<Integer, AbstractChainHandle>(new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return (int)o1-02;
-                }
-            }));
+            abstractBFactory=new ChainsBFactory(new HashMap());
             factoryMap.put(adapterType,abstractBFactory);
         }
-        abstractBFactory.register(handle, Arrays.asList(abstractBFactory.get().size()+priorityOrder));
+        abstractBFactory.register(handle, Arrays.asList(type.getName()));
 
     }
 
     @Override
-    public <R> R invoke(String handleType, String handleName, Object context, Class<R> resp) {
+    protected  <R> R invoke(String handleType, String handleName, Object context, Class<R> resp) {
         ChainsBFactory<AbstractChainHandle> handleFactory = (ChainsBFactory) super.getHandleFactory(handleType);
         AssertUtil.notNull(handleFactory,"获取不到类型为“{}”的责任链工厂",handleType);
         if (StringUtil.isEmpty(handleName)){
@@ -53,7 +48,7 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
      */
     public <R> R execute(String handleType, String handleName,  Object context, Class<R> resp) {
         AssertUtil.notNull(handleType,"处理器类型参数不能为空");
-       return (R)this.invoke(handleType,handleName,context,Integer.class);
+       return (R)this.invoke(handleType,handleName,context,resp);
     }
     /**
      * 从头节点开始执行
@@ -63,7 +58,7 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
      */
     public <R>R start(String handleType,  Object context, Class<R> resp) {
         AssertUtil.notNull(handleType,"处理器类型参数不能为空");
-        return (R)this.invoke(handleType,null,context,Integer.class);
+        return (R)this.invoke(handleType,null,context,resp);
     }
 
     /**
@@ -87,6 +82,12 @@ public class ChainsBContext extends AbstractBContext<AbstractChainHandle> {
             //获取责任链工厂
             ChainsBFactory factory = (ChainsBFactory) factoryMap.get(factoryKey);
             List<AbstractChainHandle> handles = this.getHandles(factoryKey);
+            Collections.sort(handles,new Comparator<AbstractChainHandle>() {
+                @Override
+                public int compare(AbstractChainHandle o1, AbstractChainHandle o2) {
+                    return o1.getType().getPriorityOrder()-o2.getType().getPriorityOrder();
+                }
+            });
             for (int i = 0; i < handles.size(); i++) {
                 if (i==handles.size()-1){
                     break;

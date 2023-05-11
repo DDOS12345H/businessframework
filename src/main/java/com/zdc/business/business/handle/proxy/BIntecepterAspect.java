@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  */
 
 @Aspect
-@Component
 public class BIntecepterAspect {
     @Pointcut("@annotation(com.zdc.business.business.annotation.InterceptorEnhance)")
     public void pointcut(){

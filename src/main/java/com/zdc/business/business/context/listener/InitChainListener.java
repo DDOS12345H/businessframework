@@ -2,12 +2,9 @@ package com.zdc.business.business.context.listener;
 
 import com.zdc.business.business.context.ChainsBContext;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
-@Component
 public class InitChainListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override

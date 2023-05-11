@@ -1,5 +1,7 @@
 package com.zdc.business.business.context;
 
+import com.zdc.business.business.context.listener.InitChainListener;
+import com.zdc.business.business.handle.proxy.BIntecepterAspect;
 import com.zdc.business.business.util.SpringUtil;
 import com.zdc.business.business.util.StringUtil;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -20,23 +22,37 @@ public class BusinessAutoConfiguration {
     public AdapterBContext registerAdapterBContext(){
         return new AdapterBContext();
     }
+
     @Bean(name = "chainsBContext")
     @ConditionalOnMissingBean(name = "chainsBContext")
     public ChainsBContext registerChainsBContext(){
         return new ChainsBContext();
     }
+
     @Bean(name = "intecepterBContext")
     @ConditionalOnMissingBean(name = "intecepterBContext")
     public IntecepterBContext registerIntecepterBContext(){
         return new IntecepterBContext();
     }
+
     @Bean(name = "strategyBContext")
     @ConditionalOnMissingBean(name = "strategyBContext")
     public StrategyBContext registerStrategyBContext(){
         return new StrategyBContext();
     }
+
     @Bean
     public SpringUtil registerSpringEnviroment(){
         return new SpringUtil();
+    }
+
+    @Bean
+    public InitChainListener registerInitChainListener(){
+        return new InitChainListener();
+    }
+
+    @Bean
+    public BIntecepterAspect registerBIntecepterAspect(){
+        return new BIntecepterAspect();
     }
 }

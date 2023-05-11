@@ -50,15 +50,11 @@ public class IntecepterProceedWrapper {
         return intecepters;
     }
 
-    public void setIntecepters(List<BEnhanceIntecepter> intecepters) {
-        this.intecepters = intecepters;
-    }
+
 
     public ProceedingJoinPoint getPoint() {
         return point;
     }
 
-    public void setPoint(ProceedingJoinPoint point) {
-        this.point = point;
-    }
+
 }

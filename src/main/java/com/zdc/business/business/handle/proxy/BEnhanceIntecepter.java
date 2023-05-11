@@ -9,5 +9,5 @@ import com.zdc.business.business.wrapper.IntecepterProceedWrapper;
  * @Wechat: DDOS12345H
  */
 public interface BEnhanceIntecepter {
-     Object execute(IntecepterProceedWrapper proceed);
+     Object execute(IntecepterProceedWrapper ipw);
 }
