@@ -243,7 +243,7 @@ public class StartApp {
 }
 ```
 
-![image-20230511203416531](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20230511203416531.png)
+![image-20230511203416531](img\image-20230511203416531.png)
 
 
 
@@ -433,7 +433,7 @@ public class StratApp {
 }
 ```
 
-![image-20230511203505728](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20230511203505728.png)
+![image-20230511203505728](img\image-20230511203505728.png)
 
 
 
@@ -443,7 +443,7 @@ public class StratApp {
 
 在录单系统中，录单员填写完资料，通常下一步需要提交审核，而在正式提交审核之前，系统需要校验数据是否符合要求。某些场景下不想完全卡主流程，通常会以软提示的方式在前端进行提醒；现有以下4种软提示校验（从上到下校验顺序）：
 
-![软提示](C:\Users\huang\Desktop\临时目录\业务框架\软提示.png)
+![软提示](img\softTip.png)
 
 
 
@@ -678,7 +678,7 @@ public class StartApp {
 }
 ```
 
-![image-20230511223949698](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20230511223949698.png)
+![image-20230511223949698](img\image-20230511223949698.png)
 
 
 
@@ -780,7 +780,7 @@ public class HttpToCompanyA {
 
 运行用例
 
-![image-20230511231923106](C:\Users\huang\AppData\Roaming\Typora\typora-user-images\image-20230511231923106.png)
+![image-20230511231923106](img\image-20230511231923106.png)
 
 
 
@@ -823,3 +823,4 @@ public class HttpToCompanyA {
 
 本人3年多开发经验，对于各方面认识有限。欢迎老师们指出改进之处，有好的建议或者有想法大家可以交流探讨，一起完善。
 
+微信：DDOS12345H
