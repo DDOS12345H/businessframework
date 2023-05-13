@@ -244,7 +244,7 @@ public class StartApp {
 ```
 
 
-![运行结果](img/image-20230511203416531.png)
+![运行结果](https://github.com/DDOS12345H/businessframework/blob/master/img/image-20230511203416531.png)
 
 
 ## 通用适配器模式处理器
