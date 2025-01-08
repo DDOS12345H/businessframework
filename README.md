@@ -818,9 +818,4 @@ public class HttpToCompanyA {
 
 
 
-# 总结
 
-本人3年多开发经验，对于各方面认识有限。欢迎老师们指出改进之处，有好的建议或者有想法大家可以交流探讨，一起完善。
-
-微信：DDOS12345H
-博客主页：https://blog.csdn.net/weixin_45031612
